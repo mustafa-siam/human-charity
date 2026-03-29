@@ -38,9 +38,9 @@ export function NavBar() {
 
   const navLinks = [
     { label: "Home", href: "hero" },
-    { label: "Focus", href: "focus" },
     { label: "Projects", href: "projects" },
     { label: "Updates", href: "updates" },
+    { label: "Team", href: "advisor" },
     { label: "Team", href: "team" },
     { label: "Gallery", href: "/gallery", isRoute: true },
     { label: "About Us", href: "about" },

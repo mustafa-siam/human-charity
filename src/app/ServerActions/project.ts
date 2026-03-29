@@ -4,17 +4,10 @@ import { db } from "@/lib/db";
 import { revalidatePath } from "next/cache";
 import { imagekit } from "@/lib/imagekit";
 
-/**
- * UPSERT PROJECT
- * Handles ImageKit uploads, slug generation, and Prisma database sync.
- * ID is handled as a String (UUID/CUID).
- */
 export const upsertProject = async (formData: FormData) => {
   try {
-    // 1. Extract ID as a String
     const id = (formData.get("id") as string) || "";
-    
-    // 2. Extract basic fields
+
     const title = (formData.get("title") as string) || "";
     const location = (formData.get("location") as string) || "";
     const description = (formData.get("description") as string) || "";
@@ -23,7 +16,7 @@ export const upsertProject = async (formData: FormData) => {
     const timeline = (formData.get("timeline") as string) || "";
     const progress = parseInt((formData.get("progress") as string) || "0", 10);
 
-    // 3. Parse arrays safely
+    // Parse arrays
     const parseArray = (key: string) => {
       try {
         const raw = formData.get(key) as string;
@@ -37,31 +30,45 @@ export const upsertProject = async (formData: FormData) => {
     const objectives = parseArray("objectives");
     const impact = parseArray("impact");
 
-    // 4. Handle image upload via ImageKit
+    // IMAGE HANDLING
     const existingImage = (formData.get("existingImage") as string) || "";
     const newFile = formData.get("image") as File | null;
+
     let imageUrl = existingImage;
 
-    // Only upload if a valid file with size > 0 is provided
     if (newFile && newFile.size > 0) {
       const buffer = Buffer.from(await newFile.arrayBuffer());
+
       const result = await imagekit.upload({
         file: buffer,
         fileName: `project_${Date.now()}_${newFile.name.replace(/\s+/g, "_")}`,
         folder: "projects",
       });
+
       imageUrl = result.url;
     }
-
-    // 5. Generate Slug
-    const slug = title
+    const baseSlug = title
       .toLowerCase()
       .trim()
-      .replace(/[^\w\s-]/g, "") // Remove special chars
-      .replace(/[\s_-]+/g, "-") // Replace spaces with hyphens
-      .replace(/^-+|-+$/g, ""); // Trim hyphens
+      .replace(/[\u0980-\u09FF]/g, "") 
+      .replace(/[^a-z0-9\s-]/g, "")
+      .replace(/\s+/g, "-")
+      .replace(/-+/g, "-")
+      .replace(/^-+|-+$/g, "");
 
-    // 6. Data Object for Prisma
+    const words = baseSlug.split("-").slice(0, 4);
+
+    let slug = words.join("-");
+
+    if (!slug || slug.length < 3) {
+      slug = `project-${Date.now().toString().slice(-4)}`;
+    }
+
+    // Check existing slug (FOR UNIQUENESS)
+    const existingSlug = await db.project.findUnique({
+      where: { slug },
+    });
+
     const projectData = {
       title,
       slug,
@@ -78,32 +85,43 @@ export const upsertProject = async (formData: FormData) => {
 
     let project;
 
-    // 7. Check if we are updating (id exists) or creating (no id)
+    // UPDATE
     if (id && id.trim() !== "" && id !== "undefined") {
-      // UPDATE existing project
+      if (existingSlug && existingSlug.id !== id) {
+        projectData.slug = `${slug}-${Date.now().toString().slice(-4)}`;
+      }
+
       project = await db.project.update({
-        where: { id: id },
+        where: { id },
         data: projectData,
       });
-    } else {
-      // CREATE new project
+    }
+
+    // CREATE
+    else {
+      if (existingSlug) {
+        projectData.slug = `${slug}-${Date.now().toString().slice(-4)}`;
+      }
+
       project = await db.project.create({
         data: projectData,
       });
     }
 
-    // 8. Revalidate paths to refresh the UI
+    // REFRESH UI
     revalidatePath("/admin/projects");
     revalidatePath("/projects");
-    revalidatePath(`/projects/${slug}`);
+    revalidatePath(`/projects/${projectData.slug}`);
 
     return { success: true, data: project };
   } catch (error: any) {
     console.error("Project Save Error:", error);
-    return { success: false, error: error.message || "Failed to save project" };
+    return {
+      success: false,
+      error: error.message || "Failed to save project",
+    };
   }
 };
-
 // SOFT DELETE PROJECT (move to trash)
 export const softDeleteProject = async (id: string) => {
   try {

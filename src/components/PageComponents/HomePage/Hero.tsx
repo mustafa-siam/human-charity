@@ -42,7 +42,7 @@ export function Hero() {
               <span className="text-[#10B981] text-sm">{badgeText}</span>
             </motion.div>
 
-            <h1 className="text-5xl lg:text-6xl xl:text-7xl text-white mb-6 leading-tight">
+            <h1 className="text-5xl lg:text-6xl text-white mb-6 leading-tight">
               {headline}
             </h1>
 
