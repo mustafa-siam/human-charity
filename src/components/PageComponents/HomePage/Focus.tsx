@@ -1,30 +1,42 @@
 "use client"
 import { motion } from 'motion/react';
-import { Heart, GraduationCap, HandHeart, Users } from 'lucide-react';
+import { Heart, GraduationCap, HandHeart, Users,Globe,HouseIcon } from 'lucide-react';
 
 const pillars = [
   {
     icon: Heart,
-    title: 'Health',
-    description: 'Providing essential healthcare services, mobile clinics, and health awareness programs to underserved communities across Bangladesh.',
+    title: 'Youth Leadership & Skills',
+    description: "Young people are not just the future — they are the present. Through hands-on workshops, startup seminars, and mentorship-driven initiatives, we build entrepreneurial skills, leadership capacity, and civic responsibility in Sylhet's youth. A skilled young person is a nation's most powerful resource.",
     color: '#10B981',
   },
   {
     icon: GraduationCap,
-    title: 'Education',
-    description: 'Building schools, training teachers, and providing scholarships to ensure every child has access to quality education.',
+    title: 'Education & Digital Access',
+    description: 'Education unlocks everything else. We support schools, train teachers, and deliver digital tools to children in marginalised communities. By combining literacy programmes with technology access, we prepare children for a world that demands both critical thinking and digital fluency.',
     color: '#10B981',
   },
   {
     icon: HandHeart,
-    title: 'Relief',
-    description: 'Rapid response to natural disasters and emergencies with food, shelter, and essential supplies for affected families.',
+    title: 'Community Health',
+    description: 'Good health is the foundation of everything we build. From awareness campaigns to on-ground medical support, Human Care ensures no one is left behind due to geography, income, or lack of information. A community that is healthy is a community that can truly thrive.',
     color: '#10B981',
   },
   {
     icon: Users,
-    title: 'Empowerment',
-    description: 'Skills training, microfinance programs, and livelihood support to help communities become self-sufficient and prosperous.',
+    title: "Women's Empowerment",
+    description: 'Human Care dismantles the structural barriers that hold women back. We provide vocational training, education access, and safe spaces addressing gender-based violence, mental health, and menstrual wellbeing — creating economically independent women who lead families, businesses, and communities with dignity.',
+    color: '#10B981',
+  },
+  {
+    icon: Globe,
+    title: "Climate Action",
+    description: 'Bangladesh is among the nations most vulnerable to climate change. Human Care channels youth energy into real environmental action — combating local pollution, raising climate awareness, and cultivating an eco-conscious generation equipped and motivated to confront the crisis head-on.',
+    color: '#10B981',
+  },
+  {
+    icon: HouseIcon,
+    title: "Civic Empowerment",
+    description: 'riving democracy needs engaged citizens. We educate young people on their civic rights and responsibilities, fostering transparency and accountability at every level of governance. Change starts with awareness. It grows with action — and Human Care provides both.',
     color: '#10B981',
   },
 ];
@@ -32,7 +44,7 @@ const pillars = [
 export function Focus() {
   return (
     <section id="focus" className="py-24 bg-white relative overflow-hidden">
-      <div className="absolute top-0 right-0 w-96 h-96 bg-[#10B981]/5 rounded-full blur-3xl"></div>
+      <div className="absolute top-0 right-0 w-96 h-80 bg-[#10B981]/5 rounded-full blur-3xl"></div>
       <div className="absolute bottom-0 left-0 w-96 h-96 bg-[#F59E0B]/5 rounded-full blur-3xl"></div>
 
       <div className="container mx-auto px-6 relative z-10">
@@ -60,7 +72,7 @@ export function Focus() {
         </motion.div>
 
         
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {pillars.map((pillar, index) => (
             <motion.div
               key={pillar.title}

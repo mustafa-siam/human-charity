@@ -102,7 +102,6 @@ const SortableRow = ({ member, handleEdit, handleDelete }: any) => {
   );
 };
 
-/* ---------------- MAIN PAGE COMPONENT ---------------- */
 export default function AdminTeamPage() {
   const { team, setTeam, loading, refresh } = useTeam();
   const [showForm, setShowForm] = useState(false);
@@ -213,7 +212,7 @@ export default function AdminTeamPage() {
           <Link href="/admin/dashboard/team/trash" className="flex items-center gap-2 bg-rose-600 hover:bg-rose-500 text-white px-4 py-2 rounded-xl font-semibold transition-all">
             <Trash2 size={18} /> Trash
           </Link>
-          <button onClick={() => { setEditingMember(null); setShowForm(true); }} className="flex items-center gap-2 bg-emerald-500 hover:bg-emerald-600 text-white px-5 py-2.5 rounded-xl font-bold transition-all">
+          <button onClick={() => { setEditingMember(null); setShowForm(true); }} className="flex items-center gap-2 bg-emerald-500 hover:bg-emerald-600 text-white px-5 py-2.5 rounded-xl font-bold transition-all cursor-pointer">
             <Plus size={20} /> Add Member
           </button>
         </div>

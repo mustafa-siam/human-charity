@@ -58,7 +58,7 @@ export function NavBar() {
         <div className="flex items-center justify-between">
           <Link href="/" className="cursor-pointer">
             <div className="flex items-center gap-3">
-              <Image src={'/logo.jpeg'} alt='logo' width={50} height={40} className='rounded-sm' />
+              <Image src={'/logo.png'} alt='logo' width={60} height={50} className='rounded-sm' />
               <div>
                 <h1 className="text-white text-xl font-bold leading-tight">Human Care</h1>
                 <p className="text-[#10B981] text-xs font-medium">Building Better Tomorrow</p>

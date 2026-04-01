@@ -2,6 +2,7 @@
 import { motion } from 'motion/react';
 import { Heart, Facebook, Twitter, Instagram, Linkedin, Mail, Phone, MapPin } from 'lucide-react';
 import Image from 'next/image';
+import { toast } from 'sonner';
 
 export function Footer() {
   const scrollToSection = (id: string) => {
@@ -10,7 +11,22 @@ export function Footer() {
       element.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
   };
-
+ const socials = [
+    {
+      Icon: Facebook,
+      link: "https://www.facebook.com/share/171jthvLEE/",
+    },
+    { Icon: Twitter, link: null },
+    { Icon: Instagram, link: null },
+    { Icon: Linkedin, link: null },
+  ];
+  const handleClick = (link: string | null) => {
+    if (link) {
+      window.open(link, "_blank");
+    } else {
+      toast("Not available right now");
+    }
+  };
   return (
     <footer className="bg-[#0F172A] text-white pt-16 pb-8 relative overflow-hidden">
       <div className="absolute inset-0 opacity-5">
@@ -31,10 +47,10 @@ export function Footer() {
               <div className=" flex items-center justify-center">
                 <span>
                         <Image
-                        src={'/logo.jpeg'}
+                        src={'/logo.png'}
                         alt='logo'
-                        width={50}
-                        height={40}
+                        width={60}
+                        height={50}
                         className='rounded-sm'
                         />
                 </span>
@@ -45,7 +61,7 @@ export function Footer() {
               </div>
             </motion.div>
             <p className="text-white/70 text-sm leading-relaxed mb-6">
-              Transforming lives across Bangladesh through healthcare, education, relief, and empowerment since 2010.
+              A voluntary, non-profit organisation rooted in Sylhet, Bangladesh — dedicated to people, community, and a more equitable future for all.
             </p>
             <div className="flex items-center gap-2 text-sm">
               <span className="text-2xl">🇧🇩</span>
@@ -69,40 +85,13 @@ export function Footer() {
                 <li key={link.id}>
                   <button
                     onClick={() => scrollToSection(link.id)}
-                    className="text-white/70 hover:text-[#10B981] transition-colors duration-300 text-sm flex items-center gap-2 group"
+                    className="text-white/70 hover:text-[#10B981] transition-colors cursor-pointer duration-300 text-sm flex items-center gap-2 group"
                   >
-                    <span className="w-0 h-0.5 bg-[#10B981] group-hover:w-4 transition-all duration-300"></span>
+                    <span className="w-0 h-0.5 cursor-pointer bg-[#10B981] group-hover:w-4 transition-all duration-300"></span>
                     {link.label}
                   </button>
                 </li>
               ))}
-            </ul>
-          </div>
-
-          <div>
-            <h4 className="text-lg mb-6 flex items-center gap-2">
-              <div className="w-1 h-6 bg-[#10B981] rounded-full"></div>
-              Our Programs
-            </h4>
-            <ul className="space-y-3 text-sm text-white/70">
-              <li className="hover:text-[#10B981] transition-colors duration-300 cursor-pointer">
-                Healthcare Services
-              </li>
-              <li className="hover:text-[#10B981] transition-colors duration-300 cursor-pointer">
-                Education for All
-              </li>
-              <li className="hover:text-[#10B981] transition-colors duration-300 cursor-pointer">
-                Emergency Relief
-              </li>
-              <li className="hover:text-[#10B981] transition-colors duration-300 cursor-pointer">
-                Women Empowerment
-              </li>
-              <li className="hover:text-[#10B981] transition-colors duration-300 cursor-pointer">
-                Clean Water Initiative
-              </li>
-              <li className="hover:text-[#10B981] transition-colors duration-300 cursor-pointer">
-                Livelihood Support
-              </li>
             </ul>
           </div>
 
@@ -125,23 +114,27 @@ export function Footer() {
                 <span>Info@humancareorg.com</span>
               </li>
             </ul>
-
-            <div className="mt-6">
-              <p className="text-sm text-white/70 mb-3">Follow Us</p>
-              <div className="flex gap-3">
-                {[Facebook, Twitter, Instagram, Linkedin].map((Icon, idx) => (
-                  <motion.button
-                    key={idx}
-                    className="w-10 h-10 bg-white/10 hover:bg-[#10B981] rounded-lg flex items-center justify-center transition-colors duration-300"
-                    whileHover={{ scale: 1.1, y: -3 }}
-                    whileTap={{ scale: 0.9 }}
-                  >
-                    <Icon className="w-5 h-5" />
-                  </motion.button>
-                ))}
-              </div>
-            </div>
           </div>
+                <div>
+      <h4 className="text-lg mb-6 flex items-center gap-2">
+        <div className="w-1 h-6 bg-[#10B981] rounded-full"></div>
+        Follow Us
+      </h4>
+
+      <div className="flex gap-3">
+        {socials.map(({ Icon, link }, idx) => (
+          <motion.button
+            key={idx}
+            onClick={() => handleClick(link)}
+            className="w-10 h-10  bg-white/10 hover:bg-[#10B981] rounded-lg flex items-center justify-center transition-colors duration-300 cursor-pointer"
+            whileHover={{ scale: 1.1, y: -3 }}
+            whileTap={{ scale: 0.9 }}
+          >
+            <Icon className="w-5 h-5" />
+          </motion.button>
+        ))}
+      </div>
+    </div>
         </div>
         <motion.div
           className="bg-gradient-to-r from-[#10B981] to-[#059669] rounded-2xl p-8 mb-12 text-center"
