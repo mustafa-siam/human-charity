@@ -53,16 +53,16 @@ export function NavBar() {
         : "bg-transparent"
         }`}
     >
-      <div className="container mx-auto px-6 py-4">
+      <div className="container mx-auto px-6 py-4" id="top">
         <div className="flex items-center justify-between">
-          <Link href="/" className="cursor-pointer">
+          <div onClick={() => scrollToSection("hero")} className="cursor-pointer">
             <div className="flex items-center gap-1">
               <Image src={'/logo.png'} alt='logo' width={50} height={70} className='rounded-sm' />
               <div>
                 <h1 className="text-white text-2xl font-bold leading-tight">Human Care</h1>
               </div>
             </div>
-          </Link>
+          </div>
           <nav className="hidden lg:flex items-center gap-8">
             {navLinks.map((link) =>
               link.isRoute ? (

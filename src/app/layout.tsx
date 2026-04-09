@@ -17,6 +17,9 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "Human Care",
   description: "Humanity still alive",
+  icons: {
+    icon: "/logo.png"
+  }
 };
 
 export default function RootLayout({
