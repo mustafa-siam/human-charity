@@ -39,14 +39,15 @@ export function Notices() {
           </h2>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8  mx-auto">
           {latestNotices.length === 0 ? (
             <div className="text-center py-10 bg-gray-50 rounded-xl border-2 border-dashed">
               <p className="text-gray-500">
                 No recent updates marked as "Latest".
               </p>
             </div>
-          ) : (
+          ) : 
+          (
             latestNotices.map((update, index) => (
               <motion.div
                 key={update.id || index}
