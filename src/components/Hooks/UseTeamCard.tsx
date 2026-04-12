@@ -57,10 +57,6 @@ export function UseTeamCard({ member, index = 0 }: TeamCardProps) {
     {member.role}
   </p>
 
-  <p className="text-gray-600 text-xs md:text-sm leading-relaxed mb-3 line-clamp-2">
-    {member.bio}
-  </p>
-
   <div className="mt-auto">
     <Link href={`/team/${member.slug}`}>
       <motion.button
