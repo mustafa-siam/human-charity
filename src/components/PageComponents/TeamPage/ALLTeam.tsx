@@ -78,20 +78,24 @@ export function AllTeam() {
                   </div>
                 </div>
                 <div className="p-6 flex-1 flex flex-col">
-                  <h3 className="text-xl text-[#0F172A] mb-1 group-hover:text-[#10B981] transition-colors duration-300">
+                  <h3 className="text-lg text-[#0F172A] group-hover:text-[#10B981] font-semibold mb-1">
                     {member.name}
                   </h3>
-                  <p className="text-[#10B981] text-sm mb-3">{member.role}</p>
-
-                  <p className="text-gray-600 text-sm leading-relaxed mb-4 line-clamp-3">
-                    {member.bio}
+                  <p className="text-[#0F172A]/60  tracking-wider mb-3">
+                    {member.role}
                   </p>
 
+                  <p className="text-gray-600 text-sm leading-relaxed mb-4 line-clamp-3 capitalize">
+                    {member.bio}
+                  </p>
+                  <h3 className="text-sm  text-[#0F172A] mb-1 group-hover:text-[#10B981] tracking-wider transition-colors duration-300">
+                    Expertise:
+                  </h3>
                   <div className="flex flex-col gap-2 mb-4">
                     {member.expertise.split(', ').slice(0, 2).map((skill: string, idx: number) => (
                       <span
                         key={idx}
-                        className="bg-gray-100 text-gray-600 px-2 py-1 rounded text-xs"
+                        className="text-gray-600 rounded text-xs"
                       >
                         {skill}
                       </span>
