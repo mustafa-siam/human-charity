@@ -1,7 +1,7 @@
 "use client";
 import { motion } from 'motion/react';
-import { MapPin, Phone, Mail, Send, Users, Heart, Navigation, Clock, ArrowUpRight } from 'lucide-react';
-import { useState, useEffect, useRef } from 'react';
+import { MapPin, Send, Navigation, ArrowUpRight } from 'lucide-react';
+import { useState, useRef } from 'react';
 import { toast } from 'sonner';
 import { upsertContactMessage } from '@/app/ServerActions/contact';
 import Image from 'next/image';
@@ -45,7 +45,7 @@ export function Contact() {
   });
   const [focusedField, setFocusedField] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
-  const [userLocation, setUserLocation] = useState<{ lat: number; lng: number } | null>(null);
+  const [, setUserLocation] = useState<{ lat: number; lng: number } | null>(null);
   const [locating, setLocating] = useState(false);
   const iframeRef = useRef<HTMLIFrameElement>(null);
 
@@ -87,7 +87,6 @@ export function Contact() {
         setUserLocation({ lat: pos.coords.latitude, lng: pos.coords.longitude });
         setLocating(false);
         toast.success('Location found! Opening directions…');
-        // Open Google Maps directions from user to office
         const url = `https://www.google.com/maps/dir/${pos.coords.latitude},${pos.coords.longitude}/${OFFICE_LAT},${OFFICE_LNG}`;
         window.open(url, '_blank');
       },
@@ -101,46 +100,45 @@ export function Contact() {
   const mapSrc = `https://www.openstreetmap.org/export/embed.html?bbox=${OFFICE_LNG - 0.015}%2C${OFFICE_LAT - 0.01}%2C${OFFICE_LNG + 0.015}%2C${OFFICE_LAT + 0.01}&layer=mapnik&marker=${OFFICE_LAT}%2C${OFFICE_LNG}`;
 
   const inputClass =
-    'w-full px-4 py-3 pt-5 border border-gray-200 rounded-xl focus:border-[#10B981] focus:ring-2 focus:ring-[#10B981]/20 focus:outline-none transition-all duration-200 text-sm text-gray-900 bg-white hover:border-gray-300';
+    'w-full px-4 py-3 pt-5 border border-gray-200/80 rounded-xl focus:border-[#10B981] focus:ring-2 focus:ring-[#10B981]/20 focus:outline-none transition-all duration-200 text-sm text-gray-900 bg-gray-50/50 hover:border-gray-300';
 
   return (
-    <section id="contact" className="mb-24  relative overflow-hidden">
+    <section id="contact" className="mb-24 relative overflow-hidden bg-white">
 
       {/* ── Subtle background texture ── */}
       <div className="absolute inset-0 pointer-events-none opacity-[0.03]"
         style={{ backgroundImage: 'radial-gradient(#10B981 1px, transparent 1px)', backgroundSize: '28px 28px' }} />
 
-      <div className="bg-white border-b border-gray-100">
-  <div className="container mx-auto px-6 lg:px-16 pb-14">
-    <motion.div
-      className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6"
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.5 }}
-    >
-      <div>
-        <span className="inline-flex items-center gap-2 text-[#10B981] text-xs font-semibold tracking-widest uppercase mb-3">
-          <span className="w-6 h-px bg-[#10B981]" />
-          Contact Us
-        </span>
-        <h2 className="text-4xl lg:text-5xl font-bold text-[#0F172A] leading-tight">
-          Let's Make a<br />
-          <span className="text-[#10B981]">Difference Together</span>
-        </h2>
+      {/* ── Header ── */}
+      <div className="max-w-7xl mx-auto px-6 lg:px-12 pb-14 pt-12">
+        <motion.div
+          className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+        >
+          <div>
+            <span className="inline-flex items-center gap-2 text-[#10B981] text-xs font-semibold tracking-widest uppercase mb-3">
+              <span className="w-6 h-px bg-[#10B981]" />
+              Contact Us
+            </span>
+            <h2 className="text-4xl lg:text-5xl font-bold text-[#0F172A] leading-tight">
+              Let's Make a<br />
+              <span className="text-[#10B981]">Difference Together</span>
+            </h2>
+          </div>
+          <p className="text-gray-500 text-[14px] leading-relaxed max-w-sm lg:text-right">
+            Whether you want to donate, volunteer, or partner with us — our team in Sylhet is ready to hear from you.
+          </p>
+        </motion.div>
       </div>
-      <p className="text-gray-500 text-[14px] leading-relaxed max-w-sm lg:text-right">
-        Whether you want to donate, volunteer, or partner with us — our team in Sylhet is ready to hear from you.
-      </p>
-    </motion.div>
-  </div>
-</div>
-      <div className="container mx-auto px-6 lg:px-16 pb-12">
-        <div className="grid lg:grid-cols-2 gap-8 items-stretch">
 
-          {/* ── Form ── */}
+      {/* ── Form + Image Grid ── */}
+      <div className="max-w-7xl mx-auto px-6 lg:px-12 pb-12">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8 items-stretch">
           <motion.div
-            className="bg-white rounded-2xl border border-gray-100 shadow-sm p-8 h-full flex flex-col"
+            className="bg-white rounded-2xl p-6 lg:p-8 h-full flex flex-col border border-gray-100"
             initial={{ opacity: 0, x: -24 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
@@ -218,7 +216,7 @@ export function Contact() {
 
           {/* ── Image ── */}
           <motion.div
-            className="relative rounded-2xl overflow-hidden shadow-md h-full"
+            className="relative rounded-2xl overflow-hidden min-h-[350px] lg:min-h-full"
             initial={{ opacity: 0, x: 24 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
@@ -240,19 +238,17 @@ export function Contact() {
         </div>
       </div>
 
-      {/* ══════════════════════════════════════════
-          MAP  SECTION
-      ══════════════════════════════════════════ */}
-      <div className="container mx-auto px-6 lg:px-16 pb-16">
+      {/* ── Map Section ── */}
+      <div className="max-w-7xl mx-auto px-6 lg:px-12 pb-16">
         <motion.div
-          className="bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden"
+          className="bg-white rounded-2xl overflow-hidden"
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
         >
           {/* Map header bar */}
-          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 px-6 py-4 border-b border-gray-100">
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 px-6 py-4">
             <div className="flex items-center gap-3">
               <div className="w-9 h-9 rounded-xl bg-[#10B981]/10 flex items-center justify-center">
                 <MapPin className="w-4 h-4 text-[#10B981]" />
@@ -262,8 +258,7 @@ export function Contact() {
                 <p className="text-xs text-gray-400">49/A Block-B, Shahjalal Uposhahar, Sylhet, Bangladesh</p>
               </div>
             </div>
-            <div className="flex items-center gap-2 flex-shrink-0">
-              {/* Get Directions from my location */}
+            <div className="flex flex-wrap items-center gap-2">
               <button
                 onClick={handleLocate}
                 disabled={locating}
@@ -289,7 +284,7 @@ export function Contact() {
             </div>
           </div>
 
-          {/* Embedded OpenStreetMap — no API key needed */}
+          {/* Embedded OpenStreetMap */}
           <div className="relative w-full h-72 sm:h-96">
             <iframe
               ref={iframeRef}
@@ -299,7 +294,6 @@ export function Contact() {
               loading="lazy"
               allowFullScreen
             />
-            {/* Attribution overlay bottom-right already included by OSM */}
           </div>
 
         </motion.div>

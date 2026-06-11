@@ -121,7 +121,7 @@ export function NavBar() {
                   key={link.href}
                   href={link.href}
                   className={`
-                    text-sm font-medium transition-colors duration-300 cursor-pointer
+                    text-base font-medium transition-colors duration-300 cursor-pointer
                     ${transparent
                       ? "text-white/80 hover:text-emerald-400"
                       : "text-slate-600 hover:text-emerald-500"

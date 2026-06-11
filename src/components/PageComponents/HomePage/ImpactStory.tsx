@@ -38,12 +38,15 @@ export function ImpactStory() {
                 Explore meaningful moments from our journey — where kindness, support, and collective effort create lasting change in communities.
               </p>
               <Link
-                href="/gallery"
-                className="flex items-center gap-2 text-emerald-600 font-medium hover:gap-3 transition-all text-sm self-start lg:self-end"
-              >
-                View Full Gallery
-                <ArrowRight size={18} />
-              </Link>
+  href="/gallery"
+  className="group flex items-center gap-2 text-[#10B981] hover:text-emerald-600 font-semibold text-base transition-colors duration-200 self-start lg:self-end"
+>
+  View Full Gallery
+  <ArrowRight 
+    size={18} 
+    className="transform transition-transform duration-300 ease-in-out group-hover:translate-x-1" 
+  />
+</Link>
             </div>
           </div>
 

@@ -48,14 +48,16 @@ export function Focus() {
   return (
     <section
       id="focus"
-      className="mb-24 bg-white relative overflow-hidden"
+      className="mb-24 relative overflow-hidden bg-white"
     >
       {/* Background Glow */}
       <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[#10B981]/5 rounded-full blur-3xl" />
       <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-[#10B981]/5 rounded-full blur-3xl" />
 
-      <div className="container mx-auto px-6 relative z-10">
-        {/* Header matched perfectly to Contact and Gallery structure */}
+      {/* Synchronized container matching ImpactStory and Contact layout */}
+      <div className="max-w-7xl mx-auto px-6 lg:px-12 relative z-10 pt-12">
+        
+        {/* Header Layout */}
         <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6 mb-20">
           <div>
             <span className="inline-flex items-center gap-2 text-[#10B981] text-xs font-semibold tracking-widest uppercase mb-3">
@@ -67,13 +69,13 @@ export function Focus() {
               <span className="text-[#10B981]">Through Purpose</span>
             </h2>
           </div>
-          <p className="text-gray-500 text-sm leading-relaxed max-w-sm lg:text-right">
+          <p className="text-gray-500 text-[14px] leading-relaxed max-w-sm lg:text-right">
             Six strategic pillars guiding our mission to create sustainable impact, stronger communities, and a better future for everyone.
           </p>
         </div>
 
-        {/* Two Column Focus Layout */}
-        <div className="grid md:grid-cols-2 gap-x-16 gap-y-10">
+        {/* Focus Pillar Grid Layout */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-x-16 gap-y-10">
           {pillars.map((pillar, index) => (
             <motion.div
               key={pillar.title}
@@ -97,18 +99,18 @@ export function Focus() {
                 duration-500
               "
             >
-              {/* Number */}
+              {/* Number Layout */}
               <div className="text-5xl font-bold text-gray-200 min-w-[70px]">
                 {String(index + 1).padStart(2, "0")}
               </div>
 
-              {/* Text */}
+              {/* Pillar Meta Content */}
               <div className="flex-1">
                 <h3 className="text-xl lg:text-2xl font-semibold text-[#0F172A] group-hover:text-[#10B981] transition-colors">
                   {pillar.title}
                 </h3>
 
-                <p className="mt-2 text-gray-500 leading-relaxed">
+                <p className="mt-2 text-gray-500 leading-relaxed text-[14px]">
                   {pillar.subtitle}
                 </p>
               </div>

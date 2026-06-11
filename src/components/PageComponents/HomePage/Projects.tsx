@@ -11,43 +11,46 @@ export function Projects() {
 
   if (loading) {
     return (
-      <div className="flex items-center justify-center min-h-screen bg-gray-50">
-        <Loader2 className="animate-spin text-emerald-500" size={50} />
+      <div className="flex items-center justify-center min-h-screen bg-white">
+        <Loader2 className="animate-spin text-[#10B981]" size={50} />
       </div>
     );
   }
 
-  // Layout: 6 cards — 1 hero (tall left), 2 mid-right stacked, 3 bottom strip
-  const hero   = projects[0];
+  // Layout calculations matching 6-card bento framework
+  const hero = projects[0];
   const midTop = projects[1];
   const midBot = projects[2];
-  const strip  = projects.slice(3, 6);
+  const strip = projects.slice(3, 6);
 
   return (
-    <section id="projects" className="mb-24">
-      <div className="container mx-auto px-6">
-        {/* Header matched perfectly to Contact, Gallery, and Focus structures */}
+    <section id="projects" className="mb-24 relative overflow-hidden bg-white">
+      
+      {/* Synchronized container matching ImpactStory, Focus and Contact layouts */}
+      <div className="max-w-7xl mx-auto px-6 lg:px-12 relative z-10 pt-12">
+        
+        {/* Header Layout matches perfectly */}
         <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6 mb-16">
           <div>
-            <span className="inline-flex items-center gap-2 text-emerald-500 text-xs font-semibold tracking-widest uppercase mb-3">
-              <span className="w-6 h-px bg-emerald-500" />
+            <span className="inline-flex items-center gap-2 text-[#10B981] text-xs font-semibold tracking-widest uppercase mb-3">
+              <span className="w-6 h-px bg-[#10B981]" />
               Real-World Change
             </span>
             <h2 className="text-4xl lg:text-5xl font-bold text-[#0F172A] leading-tight">
               Creating Impact<br />
-              <span className="text-emerald-500">Across the Nation</span>
+              <span className="text-[#10B981]">Across the Nation</span>
             </h2>
           </div>
-          <p className="text-gray-500 text-sm leading-relaxed max-w-sm lg:text-right">
+          <p className="text-gray-500 text-[14px] leading-relaxed max-w-sm lg:text-right">
             We believe in action over promises. Every number represents a face, a story, and a new beginning.
           </p>
         </div>
 
         {/* ── TOP ROW: hero (left 2/3) + two stacked cards (right 1/3) ── */}
-        <div className="grid grid-cols-3 gap-3 mb-3">
-          {/* HERO — tall, spans 2 cols */}
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 mb-4">
+          {/* HERO — tall, spans 2 cols on desktop */}
           {hero && (
-            <Link href={`/projects/${hero.slug}`} className="col-span-2">
+            <Link href={`/projects/${hero.slug}`} className="lg:col-span-2">
               <motion.div
                 className="group relative rounded-2xl overflow-hidden bg-gray-900 cursor-pointer"
                 style={{ height: "480px" }}
@@ -97,14 +100,14 @@ export function Projects() {
           )}
 
           {/* RIGHT COLUMN — two stacked */}
-          <div className="col-span-1 flex flex-col gap-3">
+          <div className="col-span-1 flex flex-col gap-4">
             {[midTop, midBot].map((project) =>
               project ? (
                 <Link key={project.title} href={`/projects/${project.slug}`} className="flex-1">
                   <motion.div
                     className="group relative rounded-2xl overflow-hidden bg-gray-900 cursor-pointer h-full"
-                    style={{ minHeight: "230px" }}
-                    whileHover={{ scale: 1.02 }}
+                    style={{ minHeight: "232px" }}
+                    whileHover={{ scale: 1.01 }}
                     transition={{ duration: 0.3 }}
                   >
                     <ImagePosition
@@ -114,11 +117,11 @@ export function Projects() {
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-transparent" />
 
-                    <div className="absolute bottom-0 left-0 right-0 p-4">
+                    <div className="absolute bottom-0 left-0 right-0 p-5">
                       <span className="text-white/50 text-xs flex items-center gap-1 mb-1.5">
                         <Users className="w-3 h-3" /> {project.beneficiaries}
                       </span>
-                      <h3 className="text-sm font-bold text-white leading-snug group-hover:text-[#10B981] transition-colors duration-300">
+                      <h3 className="text-base font-bold text-white leading-snug group-hover:text-[#10B981] transition-colors duration-300">
                         {project.title}
                       </h3>
                     </div>
@@ -130,14 +133,14 @@ export function Projects() {
         </div>
 
         {/* ── BOTTOM ROW: 3 equal cards ── */}
-        <div className="grid grid-cols-3 gap-3">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           {strip.map((project) =>
             project ? (
               <Link key={project.title} href={`/projects/${project.slug}`}>
                 <motion.div
                   className="group relative rounded-2xl overflow-hidden bg-gray-900 cursor-pointer"
                   style={{ height: "220px" }}
-                  whileHover={{ scale: 1.02 }}
+                  whileHover={{ scale: 1.01 }}
                   transition={{ duration: 0.3 }}
                 >
                   <ImagePosition
@@ -147,13 +150,13 @@ export function Projects() {
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/15 to-transparent" />
 
-                  <div className="absolute bottom-0 left-0 right-0 p-4">
-                    <div className="flex items-center justify-between">
+                  <div className="absolute bottom-0 left-0 right-0 p-5">
+                    <div className="flex items-center justify-between gap-4">
                       <div>
                         <span className="text-white/45 text-xs flex items-center gap-1 mb-1">
                           <Calendar className="w-3 h-3" /> {project.timeline}
                         </span>
-                        <h3 className="text-sm font-bold text-white leading-snug group-hover:text-[#10B981] transition-colors duration-300">
+                        <h3 className="text-sm font-bold text-white leading-snug group-hover:text-[#10B981] transition-colors duration-300 line-clamp-2">
                           {project.title}
                         </h3>
                       </div>
@@ -171,12 +174,12 @@ export function Projects() {
           )}
         </div>
 
-        {/* CTA */}
+        {/* Unified CTA Button */}
         <div className="text-center mt-14">
           <Link href="/projects">
             <motion.button
-              className="inline-flex items-center gap-2 bg-emerald-500 hover:bg-emerald-600 text-white px-8 py-4 rounded-full font-semibold text-sm transition-colors duration-300 cursor-pointer"
-              whileHover={{ scale: 1.03 }}
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 bg-[#10B981] hover:bg-[#059669] text-white px-8 py-3.5 rounded-xl font-semibold text-sm transition-all duration-200 shadow-md hover:shadow-lg cursor-pointer"
+              whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.97 }}
             >
               View All Projects
