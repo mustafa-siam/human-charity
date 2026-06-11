@@ -64,7 +64,6 @@ export function NavBar() {
   const navLinks = [
     { label: "Home", href: "hero" },
     { label: "Projects", href: "projects" },
-    { label: "Advisor", href: "/advisor", isRoute: true},
     { label: "Team", href: "/team", isRoute: true },
     { label: "Gallery", href: "/gallery", isRoute: true },
     { label: "About", href: "about" },
@@ -86,7 +85,7 @@ export function NavBar() {
         }
       `}
     >
-      <div className="container mx-auto px-6 py-4">
+      <div className="container mx-auto px-6 py-1">
         <div className="flex items-center justify-between">
 
           {/* LOGO */}

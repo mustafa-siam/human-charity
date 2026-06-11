@@ -17,6 +17,7 @@ export function AllTeam() {
   return (
     <div className="min-h-screen bg-white">
       <div className="pt-32 pb-24">
+
         <div className="container mx-auto px-6">
           <Link href="/">
             <motion.button
@@ -27,7 +28,7 @@ export function AllTeam() {
               Back to Home
             </motion.button>
           </Link>
-          <motion.div
+           <motion.div
             className="text-center mb-16"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -38,10 +39,35 @@ export function AllTeam() {
               animate={{ opacity: 1, scale: 1 }}
             >
               <UsersIcon className="w-4 h-4" />
+              Our Mentors & Advisors
+            </motion.div>
+            <h1 className="text-5xl text-[#0F172A] mb-4">
+              Meet With All Our Advisors
+            </h1>
+            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+              Dedicated professionals working together to create lasting change across Bangladesh
+            </p>
+          </motion.div>
+          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6  gap-5 mb-20">
+            {team.filter((m) => m.memberType === "advisor").map((member, index) => (
+             <UseTeamCard key={member.name} member={member} index={index} />
+            ))}
+          </div>
+          <motion.div
+            className="text-center mb-16"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+          >
+            <motion.div
+              className="inline-flex items-center gap-2 bg-[#10B981]/10 text-[#10B981] px-4 py-2 rounded-full text-sm mb-4"
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+            >
+              <UsersIcon className="w-4 h-4 " />
               Leadership Team
             </motion.div>
             <h1 className="text-5xl text-[#0F172A] mb-4">
-              Meet Our Team
+              Our Core Team
             </h1>
             <p className="text-xl text-gray-600 max-w-2xl mx-auto">
               Dedicated professionals working together to create lasting change across Bangladesh
@@ -68,7 +94,7 @@ export function AllTeam() {
             <div className="flex justify-center">
               <Link href="/#contact">
                 <motion.button
-                  className="bg-[#F59E0B] hover:bg-[#D97706] px-8 py-4 rounded-full font-semibold transition-colors duration-300 cursor-pointer"
+                  className="bg-emerald-500 hover:bg-emerald-600 px-8 py-4 rounded-full font-semibold transition-colors duration-300 cursor-pointer"
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                 >

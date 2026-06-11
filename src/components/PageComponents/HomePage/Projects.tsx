@@ -24,7 +24,7 @@ export function Projects() {
   const strip  = projects.slice(3, 6);
 
   return (
-    <section id="projects" className="mb-24 bg-gray-50">
+    <section id="projects" className="mb-24">
       <div className="container mx-auto px-6">
         {/* Header matched perfectly to Contact, Gallery, and Focus structures */}
         <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6 mb-16">

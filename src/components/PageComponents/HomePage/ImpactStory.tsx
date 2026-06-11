@@ -13,7 +13,7 @@ export function ImpactStory() {
   const galleryItems = items.slice(0, 4);
 
   return (
-    <section className="mb-24 bg-gray-50 overflow-hidden">
+    <section className="mb-24 overflow-hidden">
       <div className="max-w-7xl mx-auto px-6 lg:px-12">
         <motion.div
           initial={{ opacity: 0, y: 25 }}

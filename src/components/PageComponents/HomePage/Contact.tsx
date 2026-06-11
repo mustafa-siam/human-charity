@@ -104,7 +104,7 @@ export function Contact() {
     'w-full px-4 py-3 pt-5 border border-gray-200 rounded-xl focus:border-[#10B981] focus:ring-2 focus:ring-[#10B981]/20 focus:outline-none transition-all duration-200 text-sm text-gray-900 bg-white hover:border-gray-300';
 
   return (
-    <section id="contact" className="mb-24 bg-[#F8FAFB] relative overflow-hidden">
+    <section id="contact" className="mb-24  relative overflow-hidden">
 
       {/* ── Subtle background texture ── */}
       <div className="absolute inset-0 pointer-events-none opacity-[0.03]"

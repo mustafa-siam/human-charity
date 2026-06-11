@@ -16,38 +16,36 @@ export function Notices() {
         priority
       />
 
-      {/* Dark overlay */}
-      <div className="absolute inset-0 bg-black/40" />
+      {/* Dark Overlay */}
+      <div className="absolute inset-0 bg-black/45" />
 
-      {/* Right-side content panel */}
-      <div className="absolute inset-0 flex items-center justify-end">
+      {/* Content */}
+      <div className="absolute inset-0 flex items-center justify-center lg:justify-end px-2 lg:px-0">
         <motion.div
           initial={{ opacity: 0, x: 40 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8 }}
-          className="mr-10 lg:mr-20 max-w-sm text-center"
+          className="w-full max-w-[500px] text-center lg:text-center lg:mr-10"
         >
-          <p className="text-white/70 uppercase tracking-widest text-xs mb-2">
+          <p className="text-white/70 uppercase tracking-[3px] text-xs mb-3">
             Human Care
           </p>
 
-          <h2 className="text-white text-3xl lg:text-4xl font-semibold leading-tight mb-3">
-            Compassion Is At The Heart Of What We Do
+          <h2 className="text-white text-2xl sm:text-3xl lg:text-4xl font-semibold leading-tight mb-4">
+            Together, We Care. <br /> Together, We Change Lives.
           </h2>
 
           {/* Divider */}
-          <div className="w-10 h-0.5 bg-emerald-400 mx-auto mb-4" />
+          <div className="w-12 h-0.5 bg-emerald-400 mx-auto mb-5" />
 
-          <p className="text-white/80 text-sm leading-relaxed mb-7">
+          <p className="text-white/85 text-sm sm:text-base leading-relaxed mb-8">
             Support a life. Change a future. Join us in building communities
             with dignity and hope.
           </p>
 
-          <div className="flex flex-col gap-3">
-            <button className="bg-emerald-500 hover:bg-emerald-600 text-white font-medium py-3 px-8 rounded-lg transition-colors tracking-wide">
-              Join Our Mission
-            </button>
-          </div>
+          <button className="bg-emerald-500 hover:bg-emerald-600 text-white font-medium py-3 px-8 rounded-lg transition-colors tracking-wide w-full sm:w-auto">
+            Join Our Mission
+          </button>
         </motion.div>
       </div>
 
