@@ -1,107 +1,117 @@
-"use client"
-import { motion } from 'motion/react';
-import { Heart, GraduationCap, HandHeart, Users, Globe, HouseIcon } from 'lucide-react';
+"use client";
+
+import { motion } from "motion/react";
+import {
+  Heart,
+  GraduationCap,
+  HandHeart,
+  Users,
+  Globe,
+  HouseIcon,
+} from "lucide-react";
 
 const pillars = [
   {
     icon: Heart,
-    title: 'Youth Leadership & Skills',
-    description: "Young people are not just the future — they are the present. Through hands-on workshops, startup seminars, and mentorship-driven initiatives, we build entrepreneurial skills, leadership capacity, and civic responsibility in Sylhet's youth. A skilled young person is a nation's most powerful resource.",
-    color: '#10B981',
+    title: "Youth Leadership",
+    subtitle: "Empowering the next generation of changemakers",
   },
   {
     icon: Users,
     title: "Women's Empowerment",
-    description: 'Human Care dismantles the structural barriers that hold women back. We provide vocational training, education access, and safe spaces addressing gender-based violence, mental health, and menstrual wellbeing — creating economically independent women who lead families, businesses, and communities with dignity.',
-    color: '#10B981',
+    subtitle: "Creating opportunities for dignity and independence",
   },
   {
     icon: GraduationCap,
-    title: 'Education & Digital Access',
-    description: 'Education unlocks everything else. We support schools, train teachers, and deliver digital tools to children in marginalised communities. By combining literacy programmes with technology access, we prepare children for a world that demands both critical thinking and digital fluency.',
-    color: '#10B981',
+    title: "Education Access",
+    subtitle: "Opening doors through learning and digital inclusion",
   },
   {
     icon: HandHeart,
-    title: 'Community Health',
-    description: 'Good health is the foundation of everything we build. From awareness campaigns to on-ground medical support, Human Care ensures no one is left behind due to geography, income, or lack of information. A community that is healthy is a community that can truly thrive.',
-    color: '#10B981',
+    title: "Community Health",
+    subtitle: "Ensuring care reaches every person in need",
   },
-
   {
     icon: Globe,
     title: "Climate Action",
-    description: 'Bangladesh is among the nations most vulnerable to climate change. Human Care channels youth energy into real environmental action — combating local pollution, raising climate awareness, and cultivating an eco-conscious generation equipped and motivated to confront the crisis head-on.',
-    color: '#10B981',
+    subtitle: "Building a sustainable and environmentally conscious future",
   },
   {
     icon: HouseIcon,
-    title: "Civic Empowerment",
-    description: 'riving democracy needs engaged citizens. We educate young people on their civic rights and responsibilities, fostering transparency and accountability at every level of governance. Change starts with awareness. It grows with action — and Human Care provides both.',
-    color: '#10B981',
+    title: "Civic Engagement",
+    subtitle:
+      "Encouraging awareness, participation, and social responsibility",
   },
 ];
 
 export function Focus() {
   return (
-    <section id="focus" className="pt-20 bg-white relative overflow-hidden">
-      <div className="absolute top-0 right-0 w-96 h-80 bg-[#10B981]/5 rounded-full blur-3xl"></div>
-      <div className="absolute bottom-0 left-0 w-96 h-96 bg-[#F59E0B]/5 rounded-full blur-3xl"></div>
+    <section
+      id="focus"
+      className="mb-24 bg-white relative overflow-hidden"
+    >
+      {/* Background Glow */}
+      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[#10B981]/5 rounded-full blur-3xl" />
+      <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-[#10B981]/5 rounded-full blur-3xl" />
 
       <div className="container mx-auto px-6 relative z-10">
-        <motion.div
-          className="text-center mb-16"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-        >
-          <motion.div
-            className="inline-block bg-[#10B981]/10 text-[#10B981] px-4 py-2 rounded-full text-sm mb-4"
-            initial={{ opacity: 0, scale: 0.9 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-          >
-            Our Focus Areas
-          </motion.div>
-          <h2 className="text-4xl lg:text-5xl text-[#0F172A] mb-4">
-            Framework For Meaningful Change
-          </h2>
-          <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-            Transforming lives through comprehensive programs designed to address the most critical needs of our communities
+        {/* Header matched perfectly to Contact and Gallery structure */}
+        <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6 mb-20">
+          <div>
+            <span className="inline-flex items-center gap-2 text-[#10B981] text-xs font-semibold tracking-widest uppercase mb-3">
+              <span className="w-6 h-px bg-[#10B981]" />
+              Our Focus Areas
+            </span>
+            <h2 className="text-4xl lg:text-5xl font-bold text-[#0F172A] leading-tight">
+              Building Change<br />
+              <span className="text-[#10B981]">Through Purpose</span>
+            </h2>
+          </div>
+          <p className="text-gray-500 text-sm leading-relaxed max-w-sm lg:text-right">
+            Six strategic pillars guiding our mission to create sustainable impact, stronger communities, and a better future for everyone.
           </p>
-        </motion.div>
+        </div>
 
-
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {/* Two Column Focus Layout */}
+        <div className="grid md:grid-cols-2 gap-x-16 gap-y-10">
           {pillars.map((pillar, index) => (
             <motion.div
               key={pillar.title}
-              className="group relative bg-white rounded-2xl p-8 border-2 border-[#10B981]/20 hover:border-[#10B981] transition-all duration-300 hover:shadow-2xl hover:-translate-y-2"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: index * 0.1 }}
+              transition={{
+                duration: 0.5,
+                delay: index * 0.08,
+              }}
+              className="
+                group
+                flex
+                items-start
+                gap-6
+                pb-8
+                border-b
+                border-gray-200
+                hover:border-[#10B981]/50
+                transition-all
+                duration-500
+              "
             >
+              {/* Number */}
+              <div className="text-5xl font-bold text-gray-200 min-w-[70px]">
+                {String(index + 1).padStart(2, "0")}
+              </div>
 
-              <motion.div
-                className="w-16 h-16 rounded-xl bg-gradient-to-br from-[#10B981] to-[#059669] flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300"
-                whileHover={{ rotate: 5 }}
-              >
-                <pillar.icon className="w-8 h-8 text-white" />
-              </motion.div>
+              {/* Text */}
+              <div className="flex-1">
+                <h3 className="text-xl lg:text-2xl font-semibold text-[#0F172A] group-hover:text-[#10B981] transition-colors">
+                  {pillar.title}
+                </h3>
 
-              <h3 className="text-2xl text-[#0F172A] mb-3">
-                {pillar.title}
-              </h3>
-
-              <p className="text-gray-600 leading-relaxed mb-6">
-                {pillar.description}
-              </p>
-
-              <div className="h-1 w-0 bg-gradient-to-r from-[#10B981] to-[#059669] group-hover:w-full transition-all duration-500 rounded-full"></div>
-
-              <div className="absolute inset-0 bg-gradient-to-br from-[#10B981]/0 to-[#10B981]/0 group-hover:from-[#10B981]/5 group-hover:to-[#059669]/5 rounded-2xl transition-all duration-300 pointer-events-none"></div>
+                <p className="mt-2 text-gray-500 leading-relaxed">
+                  {pillar.subtitle}
+                </p>
+              </div>
             </motion.div>
           ))}
         </div>
