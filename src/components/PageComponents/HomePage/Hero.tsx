@@ -9,7 +9,7 @@ export function Hero() {
   const { hero, loading } = useHero();
   const [currentIndex, setCurrentIndex] = useState(0);
 
- useEffect(() => {
+  useEffect(() => {
     if (!hero?.images?.length) return;
 
     const interval = setInterval(() => {
@@ -40,8 +40,8 @@ export function Hero() {
 
   return (
     <section className="relative min-h-screen mb-24 overflow-hidden bg-black">
-
-      {/* BACKGROUND SLIDER */}
+      
+      {/* Background Slider */}
       <AnimatePresence mode="wait">
         <motion.div
           key={currentIndex}
@@ -56,10 +56,10 @@ export function Hero() {
         />
       </AnimatePresence>
 
-      {/* DARK OVERLAY */}
+      {/* Dark Overlay */}
       <div className="absolute inset-0 bg-black/55" />
 
-      {/* CONTENT container matched perfectly to ImpactStory layout structures */}
+      {/* Hero Content */}
       <div className="relative z-10 min-h-screen flex items-center w-full">
         <div className="max-w-7xl mx-auto px-6 lg:px-12 w-full pt-12">
           <motion.div
@@ -68,46 +68,58 @@ export function Hero() {
             transition={{ duration: 0.9 }}
             className="w-full max-w-3xl"
           >
-            {/* Dynamic Badge Component tracking page hierarchy */}
-            {badgeText && (
-              <span className="inline-flex items-center gap-2 text-[#10B981] text-sm font-semibold tracking-widest uppercase mb-4">
-                <span className="w-6 h-px bg-[#10B981]" />
-                {badgeText}
-              </span>
-            )} 
+            
+            {/* Badge */}
+          {badgeText && (
+  <span className="inline-flex items-center gap-2 text-green-400 text-xs sm:text-sm font-semibold tracking-widest uppercase mb-4">
+    <span className="w-6 h-px bg-green-400" />
+    {badgeText}
+  </span>
+)}
 
+            {/* Heading */}
             <h1
               className="
                 text-white
-                text-4xl
-                sm:text-5xl
-                lg:text-7xl
+                text-3xl
+                sm:text-4xl
+                md:text-5xl
+                lg:text-[3.5rem]
+                xl:text-[4rem]
+                2xl:text-[4.5rem]
                 font-bold
-                leading-[1.15]
-                mb-6
+                leading-[1.1]
+                md:leading-[1.15]
                 tracking-tight
+                mb-5
+                md:mb-6
               "
             >
               {headline}
             </h1>
 
-            {/* DESCRIPTION (SOFTER) */}
+            {/* Description */}
             <p
               className="
                 text-white/80
-                text-base
-                sm:text-lg
-                lg:text-xl
+                text-sm
+                sm:text-base
+                md:text-lg
+                lg:text-[1.15rem]
+                xl:text-xl
                 leading-relaxed
                 max-w-xl
-                mb-10
+                lg:max-w-2xl
+                mb-8
+                md:mb-10
               "
             >
               {description}
             </p>
 
-            {/* CTA Buttons matched to full interface design systems */}
+            {/* CTA Buttons */}
             <div className="flex flex-col sm:flex-row gap-4">
+              
               <button
                 onClick={() => scrollToSection("contact")}
                 className="
@@ -115,14 +127,16 @@ export function Hero() {
                   bg-[#10B981]
                   hover:bg-[#059669]
                   text-white
-                  px-8 py-3.5
-                  rounded-xl
+                  text-base lg:text-lg
                   font-semibold
-                  text-lg
+                  px-6 lg:px-8
+                  py-3 lg:py-3.5
+                  rounded-xl
                   inline-flex
                   items-center
                   justify-center
-                  gap-2.5 cursor-pointer
+                  gap-2.5
+                  cursor-pointer
                   shadow-md hover:shadow-lg
                   transition-all duration-200
                 "
@@ -139,27 +153,29 @@ export function Hero() {
                   text-white
                   hover:bg-white
                   hover:text-black
-                  px-8 py-3.5
-                  rounded-xl
+                  text-base lg:text-lg
                   font-semibold
-                  text-lg
+                  px-6 lg:px-8
+                  py-3 lg:py-3.5
+                  rounded-xl
                   inline-flex
                   items-center
                   justify-center
-                  gap-2.5 cursor-pointer
+                  gap-2.5
+                  cursor-pointer
                   transition-all duration-200
                 "
               >
                 Explore Our Work
                 <ArrowRight size={16} />
               </button>
-            </div>
 
+            </div>
           </motion.div>
         </div>
       </div>
 
-      {/* SLIDER DOT INDEX METERS */}
+      {/* Slider Indicators */}
       <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex gap-2 z-20">
         {images.map((_: string, index: number) => (
           <button
@@ -167,9 +183,10 @@ export function Hero() {
             onClick={() => setCurrentIndex(index)}
             className={`
               h-2.5 rounded-full transition-all duration-300 cursor-pointer
-              ${index === currentIndex
-                ? "bg-white w-6"
-                : "bg-white/40 w-2.5 hover:bg-white/70"
+              ${
+                index === currentIndex
+                  ? "bg-white w-6"
+                  : "bg-white/40 w-2.5 hover:bg-white/70"
               }
             `}
             aria-label={`Go to slide ${index + 1}`}
@@ -177,7 +194,7 @@ export function Hero() {
         ))}
       </div>
 
-      {/* BOTTOM BASE GRADIENT TRANSITION */}
+      {/* Bottom Gradient */}
       <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-black/70 to-transparent pointer-events-none" />
     </section>
   );
